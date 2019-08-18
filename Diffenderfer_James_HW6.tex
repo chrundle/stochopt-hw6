@@ -1,0 +1,278 @@
+\documentclass[11pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{marvosym,enumerate,color,mathrsfs,graphicx,epstopdf}
+\usepackage{enumitem}
+\setenumerate{listparindent=\parindent}
+\def\cc{\color{blue}}
+%\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks = true, linkcolor = blue, urlcolor  = purple, citecolor = blue, anchorcolor = blue]{hyperref}
+\usepackage{courier}
+\usepackage{fullpage}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hhline}
+\hypersetup{
+	%colorlinks,
+	%citecolor=black,
+	%filecolor=black,
+	%linkcolor=blue,
+	%urlcolor=black
+}
+
+
+%Line Numbering
+\usepackage[mathlines]{lineno}
+%\linenumbers
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+%\newcommand{\dell}{\partial}
+\newcommand{\abs}[1]{\left\lvert{#1}\right\rvert}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\M}{\mathscr{M}}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\scr}[1]{\mathscr{#1}}
+\newcommand{\Ns}{\mathscr{N}}
+\newcommand{\nm}{\mathrel{\unlhd}}
+\newcommand{\stcomp}[1]{{#1}^{\mathsf{c}}}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\LR}[1]{\left\langle{#1}\right\rangle}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{remark}[theorem]{Remark(s)}
+\newtheorem*{remark*}{Remark(s)}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{innerexercise}{Exercise}
+\newenvironment{exercise}[1]
+  {\renewcommand\theinnerexercise{#1}\innerexercise}
+  {\endinnerexercise}
+
+% Upper and lower integrals
+%\def\upint{\mathchoice%
+%    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+%    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+%    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+%    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+%  \int}
+%\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+\title{\bfseries ESI 6341 - Introduction to Stochastic Optimization \\ Homework 6 - Kelley's Algorithm}
+\author{\bfseries James Diffenderfer}
+\date{April 19, 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%% Kelley's Algorithm %%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Part (a)}
+\addcontentsline{toc}{section}{Part (a)}
+I chose to solve the problem
+\begin{align*}
+\min \ \ \ &x \\
+\text{s.t.} \ \ \ &x \in [-1, 1].
+\end{align*}
+Using the initial point $x^0 = 1$ and a stopping tolerance of $1e^{-6}$, our implementation of Kelley's Algorithm reached the stopping criteria in one iteration and returned the solution $x^1 = -1$ which is the global minimum of the objective function with respect to the constraint. Below is a table of values and a graph of the iterates and the objective function. \\
+
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{Table1}
+\centering
+\caption{Table of values determined while performing Kelley's Algorithm}
+\end{figure}
+\quad
+
+\begin{figure}[h!]
+\includegraphics[width=0.8\textwidth]{GraphA}
+\centering
+\caption{Plot of $f(x) = x$ and $f_k(x^k)$ for $0 \leq k \leq 1$}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%% Kelley's Algorithm %%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Part (b)}
+\addcontentsline{toc}{section}{Part (b)}
+For this part we were supposed to solve the problem
+\begin{align*}
+\min \ \ \ &(x - 2)^2 + 1 \ \ \ \text{s.t.} \ \ \ x \in [-1, 4]
+\end{align*}
+with initial point $x^0 = -1$. Using our implementation of Kelley's Algorithm with a stopping tolerance of $1e^{-6}$, the stopping criteria were reached in 14 iterations and returned the solution $x^{14} = 1.99987793$. The exact solution is $x^* = 2$. Below is a table of values and a graph of the iterates and the objective function. Since the last several iterates are fairly close to each other we provided two different plots. The first contains all of the iterates and the second provides a zoomed in view of the last several iterates.
+
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{Table2}
+\centering
+\caption{Table of values determined while performing Kelley's Algorithm}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.8\textwidth]{FullGraph}
+\centering
+\caption{Plot of $f(x) = (x-2)^2 + 1$ and $f_k(x^k)$ for $0 \leq k \leq 14$}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.8\textwidth]{FullZoomies}
+\centering
+\caption{Plot of $f(x) = (x-2)^2 + 1$ and $f_k(x^k)$ for $6 \leq k \leq 14$}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%% Kelley's Algorithm %%%%%%%%%%%%%%%%%%
+%\newpage
+%\section*{Part (c)}
+%\addcontentsline{toc}{section}{Part (c)}
+
+
+
+%%%%%%%%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+
+Here we provide our code for Kelley's Algorithm. The algorithm was coded using python. We made use of the libraries numpy, scipy, and matplotlib to solve the linear program in Kelley's Algorithm and generate a plot of the points computed at each iteration of the algorithm.
+
+%%%%%%%%%%%%%%%%% Kelley's Algorithm %%%%%%%%%%%%%%%%%%
+\subsection*{Kelley's Algorithm}
+\addcontentsline{toc}{subsection}{Kelley's Algorithm}
+
+\begin{scriptsize}
+\begin{verbatim}
+import numpy as np
+from scipy.optimize import linprog
+import matplotlib.pyplot as plt
+
+def f(x):
+    return x
+
+def fprime(x):
+    return 1
+  
+def g(x):
+    return (x-2)**2 + 1
+
+def gprime(x):
+    return 2*x - 4
+  
+def kelley(x0, xmin, xmax, f, fprime, eps, max_iters):
+    # Initialize array to hold alpha, beta, and x
+    alpha = []
+    beta = []
+    x = []
+    lk = []
+    # Append initial x value to list
+    x = np.append(x, x0)
+    # Initialize uk
+    uk = f(x[0])
+    # Initialize value of c for linprog
+    c = np.array([0,1])
+    # Initialize bounds for linprog
+    x0_bounds = (xmin, xmax)
+    x1_bounds = (None, None)
+    # Generate supporting hyperplanes to find minimum
+    for k in range(max_iters):
+        # Compute beta value
+        beta = np.append(beta, fprime(x[k]))
+        # Compute alpha value
+        alpha = np.append(alpha, f(x[k]) - beta[k] * x[k])
+        # ----- Compute eta value -----
+        # Initialize A
+        A = np.stack((beta, -np.ones(k+1)), axis = 1)
+        # Initialize b
+        b = -np.copy(alpha)
+        # Solve LP to get eta 
+        eta = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds))
+        # Use solution from linear program to store x_{k+1} and lk
+        x = np.append(x, eta.x[0])
+        lk.append(eta.fun)
+        # Update uk value
+        uk = min(uk, f(x[k+1]))
+        # Update temp
+        t = x[k+1]
+        # Check stopping criteria
+        if (uk - lk[k] <= eps):
+            # Stopping criterion satisfied
+            print("Stopping criterion satisfied in %i iterations." %(k+1)) 
+            print("Terminating Program and returning minimizer.")
+            break
+        if k == max_iters - 1:
+            print("Maximum number of iterations reached without satisfying stopping criteria.")
+            print("Terminating program and returning current value for x_%i." %(k+1))
+    # Return solution
+    return x, lk
+  
+# Run kelley program on problem of my choice
+x, lk = kelley(1, -1, 1, f, fprime, 1e-6, 50)
+print("x = ", x)
+print("lk = ", lk)
+
+# Run kelley program for part (b)
+x, lk = kelley(-1, -1, 4, g, gprime, 1e-6, 50)
+print("x = ", x)
+print("lk = ", lk)    
+
+# ---------- Generate Plot -------------
+# Set x values
+xplt = x[0:len(x)]
+lk = np.insert(lk, 0, g(x[0]))
+
+# Set plot size
+plt.figure(figsize=(20,10))
+# Plot function
+t = np.arange(0., 5., 0.1)
+plt.plot(t, (t-2)**2 + 1, 'b-')
+# Plot iterates and fk values
+plt.plot(xplt, lk, 'ro')
+# Generate labels for points
+labels = [r'$f{0}(x{0})$'.format(i) for i in range(1,len(lk)+1)]
+# Place labels on plot
+i = 0
+for label, a, b in zip(labels, xplt, lk):
+    i = i + 1
+    plt.annotate(
+            label,
+            xy=(a, b), xytext=(a - (-1)**i * (20 + 1.4**i), b - (-1)**i * ( 20 + 1.4**i)),
+            textcoords='offset points', ha='center', va='center',
+            bbox=dict(boxstyle='round,pad=0.5', fc='white', alpha=0.25),
+            arrowprops=dict(arrowstyle = '->', connectionstyle='arc3,rad=0'))
+# Set axes for plot
+plt.axis([1.2, 2.8, -0.25, 1.8])
+# Save figure to file
+plt.savefig('kelley_plot.png')
+# Show plot
+plt.show()
+\end{verbatim}
+\end{scriptsize}
+
+
+\end{document}
+%%%%%%%%%%%%%%%%% END OF DOCUMENT %%%%%%%%%%%%%%%%%%
